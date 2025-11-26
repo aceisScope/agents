@@ -10,14 +10,15 @@ import gradio as gr
 load_dotenv(override=True)
 
 def push(text):
-    requests.post(
-        "https://api.pushover.net/1/messages.json",
-        data={
-            "token": os.getenv("PUSHOVER_TOKEN"),
-            "user": os.getenv("PUSHOVER_USER"),
-            "message": text,
-        }
-    )
+    print(f"I don't have Pushover user or token, so just printing the message: {text}")
+    # requests.post(
+    #     "https://api.pushover.net/1/messages.json",
+    #     data={
+    #         "token": os.getenv("PUSHOVER_TOKEN"),
+    #         "user": os.getenv("PUSHOVER_USER"),
+    #         "message": text,
+    #     }
+    # )
 
 
 def record_user_details(email, name="Name not provided", notes="not provided"):
