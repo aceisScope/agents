@@ -70,6 +70,7 @@ class StockPicker():
     def pick_best_company(self) -> Task:
         return Task(
             config=self.tasks_config['pick_best_company'],
+            output_file='output/decision.md',  # Explicitly set to match tasks.yaml
         )
     
 

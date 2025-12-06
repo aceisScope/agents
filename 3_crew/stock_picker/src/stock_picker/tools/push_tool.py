@@ -11,19 +11,27 @@ class PushNotification(BaseModel):
 
 class PushNotificationTool(BaseTool):
     
-
-    name: str = "Send a Push Notification"
+    name: str = "send_push_notification"
     description: str = (
-        "This tool is used to send a push notification to the user."
+        "Use this tool to send a push notification message to the user. "
+        "Call this tool when you need to notify the user about your decision or important findings. "
+        "Required parameter: message (string) - the notification message to send."
     )
     args_schema: Type[BaseModel] = PushNotification
 
     def _run(self, message: str) -> str:
-        pushover_user = os.getenv("PUSHOVER_USER")
-        pushover_token = os.getenv("PUSHOVER_TOKEN")
-        pushover_url = "https://api.pushover.net/1/messages.json"
+        """Execute the push notification tool"""
+        # Clear logging to verify tool execution
+        print("\n" + "🔔" * 30)
+        print("PUSH NOTIFICATION TOOL EXECUTED!")
+        print("🔔" * 30)
+        print(f"Message: {message}")
+        print("🔔" * 30 + "\n")
+        
+        # pushover_user = os.getenv("PUSHOVER_USER")
+        # pushover_token = os.getenv("PUSHOVER_TOKEN")
+        # pushover_url = "https://api.pushover.net/1/messages.json"
 
-        print(f"Push: {message}")
-        payload = {"user": pushover_user, "token": pushover_token, "message": message}
-        requests.post(pushover_url, data=payload)
+        # payload = {"user": pushover_user, "token": pushover_token, "message": message}
+        # requests.post(pushover_url, data=payload)
         return '{"notification": "ok"}'

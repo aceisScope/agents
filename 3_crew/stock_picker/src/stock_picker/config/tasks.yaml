@@ -19,7 +19,10 @@ research_trending_companies:
 pick_best_company:
   description: >
     Analyze the research findings and pick the best company for investment.
-    Send a push notification to the user with the decision and 1 sentence rationale.
+    
+    IMPORTANT: You MUST use the 'send_push_notification' tool to send a push notification to the user 
+    with your decision and a 1 sentence rationale before writing the detailed report.
+    
     Then respond with a detailed report on why you chose this company, and which companies were not selected.
   expected_output: >
     The chosen company and why it was chosen; the companies that were not selected and why they were not selected.
