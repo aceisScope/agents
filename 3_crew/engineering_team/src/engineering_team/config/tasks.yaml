@@ -27,11 +27,26 @@ frontend_task:
     Write a gradio UI in a module app.py that demonstrates the given backend class in {module_name}.
     Assume there is only 1 user, and keep the UI very simple indeed - just a prototype or demo.
     Here are the requirements: {requirements}
+    CRITICAL: You MUST use Gradio 4.0+ API. Do NOT use deprecated APIs:
+    - Use gr.Number() instead of gr.inputs.Number()
+    - Use gr.Textbox() instead of gr.inputs.Textbox() or gr.outputs.Textbox()
+    - Use gr.Button() instead of gr.inputs.Button()
+    - Use gr.Blocks() or gr.Interface() with modern components, NOT gr.inputs.* or gr.outputs.*
+    - The old gr.inputs.* and gr.outputs.* APIs were removed in Gradio 4.0 and will cause AttributeError
+    CRITICAL: When using button.click() or other event handlers, you MUST:
+    - Assign ALL components to variables (e.g., input_var = gr.Number(...), output_var = gr.Textbox(...))
+    - Pass component OBJECTS (not strings) to inputs and outputs parameters
+    - Example: button.click(fn, inputs=[input_var], outputs=[output_var]) NOT inputs="input_var" or inputs=["input_var"]
+    - elem_id is NOT a way to reference components - you must use the actual variable names
   expected_output: >
     A gradio UI in module app.py that demonstrates the given backend class.
     The file should be ready so that it can be run as-is, in the same directory as the backend module, and it should import the backend class from {module_name}.
-    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks.
+    IMPORTANT: Output ONLY the raw Python code without any markdown formatting, code block delimiters, or backticks, especially no ```python in the file.
     The output should be valid Python code that can be directly saved to a file and executed.
+    CRITICAL: Use Gradio 4.0+ API only. Use gr.Number(), gr.Textbox(), gr.Button(), gr.Blocks(), etc.
+    NEVER use gr.inputs.* or gr.outputs.* as these APIs were removed in Gradio 4.0.
+    CRITICAL: Always assign components to variables and use those variables (not strings) in inputs/outputs parameters.
+    Example: input_component = gr.Number(...); output_component = gr.Textbox(...); button.click(fn, inputs=[input_component], outputs=[output_component])
   agent: frontend_engineer
   context:
     - code_task
