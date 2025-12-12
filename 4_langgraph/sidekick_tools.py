@@ -27,7 +27,7 @@ async def playwright_tools():
 
 def push(text: str):
     """Send a push notification to the user"""
-    requests.post(pushover_url, data = {"token": pushover_token, "user": pushover_user, "message": text})
+    print(f"Pretend to send push notification with message: {text}")
     return "success"
 
 
@@ -36,7 +36,7 @@ def get_file_tools():
     return toolkit.get_tools()
 
 
-async def other_tools():
+def other_tools():
     push_tool = Tool(name="send_push_notification", func=push, description="Use this tool when you want to send a push notification")
     file_tools = get_file_tools()
 

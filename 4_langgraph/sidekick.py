@@ -45,9 +45,10 @@ class Sidekick:
         self.browser = None
         self.playwright = None
 
+    # __init__ is the constructor for the Sidekick class that can't be async, so we need to use async def setup() to initialize the Sidekick.
     async def setup(self):
         self.tools, self.browser, self.playwright = await playwright_tools()
-        self.tools += await other_tools()
+        self.tools += other_tools()
         worker_llm = ChatOpenAI(model="gpt-4o-mini")
         self.worker_llm_with_tools = worker_llm.bind_tools(self.tools)
         evaluator_llm = ChatOpenAI(model="gpt-4o-mini")
